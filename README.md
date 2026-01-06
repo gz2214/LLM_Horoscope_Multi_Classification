@@ -4,10 +4,12 @@
 The purpose of this analysis is to create a end-to-end pipeline that will fine-tune LLM to perform multi-classification. Specifically, we use the [facebook/bart-base](https://huggingface.co/facebook/bart-base) to see if it can learn to identify if horoscope text can be attributed to the appropriate zodiac signs. 
 
 ## Data
-Data comes from the horoscope data set from [kaggle](https://www.kaggle.com/datasets/shahp7575/horoscopes?resource=download). There is approximately 18K text samples, distributed equally among the 12 zodiac signs.
+Data comes from the horoscope data set from [kaggle](https://www.kaggle.com/datasets/shahp7575/horoscopes?resource=download). There is approximately 18K text samples, distributed equally among the 12 zodiac signs. Each row has information about the zodiac sign, date, subject of the text, and actual text. 
 
 ## Methodology 
 We use the [Optuna](https://optuna.org/) package in python to automate hyperperameter tuning. We ran 20 trials to find the best model. 70% of the data was used for training, while validation and testing both used 15% of the data respectively. We used [F1 classification score](https://en.wikipedia.org/wiki/F-score) to guide the optimization of the model. 
+
+When fine-tuning the model, direct references in the sample text were removed in order to remove biased results. 
 
 ## Results
 
